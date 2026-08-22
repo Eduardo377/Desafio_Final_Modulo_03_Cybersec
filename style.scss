@@ -1,0 +1,279 @@
+// ==========================================
+// Variáveis e Configurações Globais
+// ==========================================
+$font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+$font-mono: 'Fira Code', 'Courier New', Courier, monospace;
+
+$color-bg-body: #f4f6f8;
+$color-bg-card: #ffffff;
+$color-text-main: #333333;
+$color-text-muted: #666666;
+$color-border: #e0e0e0;
+
+// Paleta de Severidade
+$severities: (
+    critico: #dc3545, // Vermelho escuro
+    alto:    #fd7e14, // Laranja
+    medio:   #ffc107, // Amarelo
+    baixo:   #17a2b8  // Azul
+);
+
+// ==========================================
+// Mixins
+// ==========================================
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin card-shadow {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+// ==========================================
+// Estilos Base
+// ==========================================
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-main;
+    background-color: $color-bg-body;
+    color: $color-text-main;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+// ==========================================
+// Cabeçalho e Rodapé
+// ==========================================
+.report-header {
+    background-color: #1a1a24;
+    color: #ffffff;
+    padding: 40px 0;
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #a0a0a0;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .meta-info {
+        display: flex;
+        gap: 20px;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 15px;
+
+        span strong {
+            color: #d0d0d0;
+        }
+    }
+}
+
+.report-footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+    color: $color-text-muted;
+    font-size: 0.85rem;
+    border-top: 1px solid $color-border;
+}
+
+// ==========================================
+// Seções de Conteúdo
+// ==========================================
+.report-section {
+    margin-bottom: 50px;
+    background-color: $color-bg-card;
+    padding: 30px;
+    @include card-shadow;
+
+    h2 {
+        border-bottom: 2px solid $color-border;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+}
+
+// ==========================================
+// Dashboard Resumo (Dashboard de Severidade)
+// ==========================================
+.summary-stats {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+
+    .stat-box {
+        flex: 1;
+        @include flex-center;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 6px;
+        color: #fff;
+
+        .count {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        // Iterando sobre o mapa de cores de severidade
+        @each $name, $color in $severities {
+            &.#{$name} {
+                background-color: $color;
+            }
+        }
+    }
+}
+
+// ==========================================
+// Cartões de Vulnerabilidade (Findings)
+// ==========================================
+.vuln-card {
+    border: 1px solid $color-border;
+    border-left-width: 5px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    overflow: hidden;
+
+    // Bordas laterais dinâmicas baseadas na severidade
+    &.severity-critical { border-left-color: map-get($severities, critico); }
+    &.severity-high     { border-left-color: map-get($severities, alto); }
+    &.severity-medium   { border-left-color: map-get($severities, medio); }
+    &.severity-low      { border-left-color: map-get($severities, baixo); }
+
+    .vuln-header {
+        background-color: #fafafa;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $color-border;
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #333;
+        }
+    }
+
+    .vuln-body {
+        padding: 20px;
+
+        .info-group {
+            margin-bottom: 20px;
+
+            h4 {
+                color: #555;
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+
+            p {
+                color: $color-text-muted;
+            }
+
+            &.remediation {
+                background-color: #e8f5e9;
+                padding: 15px;
+                border-radius: 4px;
+                border: 1px solid #c8e6c9;
+                
+                h4 { color: #2e7d32; }
+                p { color: #1b5e20; }
+            }
+        }
+
+        // Estilo para o bloco de Prova de Conceito
+        .poc-details {
+            background: #272822; // Estilo Monokai
+            border-radius: 4px;
+            margin-bottom: 20px;
+            
+            summary {
+                padding: 10px 15px;
+                color: #e6db74;
+                cursor: pointer;
+                font-family: $font-mono;
+                font-size: 0.9rem;
+                
+                &:hover {
+                    background: lighten(#272822, 5%);
+                }
+            }
+
+            pre {
+                padding: 15px;
+                border-top: 1px solid #3e3d32;
+                overflow-x: auto;
+                
+                code {
+                    font-family: $font-mono;
+                    color: #f8f8f2;
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
+
+// ==========================================
+// Badges / Tags
+// ==========================================
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+
+    &-critical { background-color: map-get($severities, critico); }
+    &-high     { background-color: map-get($severities, alto); }
+    &-medium   { background-color: map-get($severities, medio); color: #333; }
+    &-low      { background-color: map-get($severities, baixo); }
+}
+
+// ==========================================
+// Responsividade Básica
+// ==========================================
+@media (max-width: 768px) {
+    .summary-stats {
+        flex-direction: column;
+    }
+
+    .report-header {
+        .meta-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+
+    .vuln-card .vuln-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

