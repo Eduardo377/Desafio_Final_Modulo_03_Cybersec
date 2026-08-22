@@ -1,9 +1,11 @@
 # RELATÓRIO TÉCNICO DE TESTE DE INTRUSÃO (PENTEST)
-**Projeto:** Avaliação de Segurança Ofensiva e Análise de Postura de Risco
-**Autor:** [Eduardo Andrade](https://www.linkedin.com/in/eduardogomes377)
-**Alvo:** TechCorp Solutions (`98.95.207.28` / Infraestrutura Interna `172.20.0.0/24`)
-**Metodologias de Referência:** OWASP Web Security Testing Guide (WSTG v4.2), PTES (Penetration Testing Execution Standard) e OSSTMM 3.0
-**Classificação:** Documento Estritamente Confidencial — Nível Corporativo TLP:RED
+| Diretriz | Detalhes do Projeto |
+| :--- | :--- |
+| **Projeto** | Avaliação de Segurança Ofensiva e Análise de Postura de Risco |
+| **Autor** | [Eduardo Andrade](https://www.linkedin.com/in/eduardogomes377) |
+| **Alvo** | TechCorp Solutions (`98.95.207.28` / Infraestrutura Interna `172.20.0.0/24`) |
+| **Metodologias** | OWASP Web Security Testing Guide (WSTG v4.2), PTES e OSSTMM 3.0 |
+| **Classificação** | 🔴 Documento Estritamente Confidencial — Nível Corporativo TL
 
 ---
 
