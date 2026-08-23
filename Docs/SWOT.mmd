@@ -1,0 +1,54 @@
+%%{init: {"quadrantChart": {"chartWidth": 600, "chartHeight": 600}, "themeVariables": {"quadrant1Fill": "#90EE90", "quadrant2Fill": "#87CEEB", "quadrant3Fill": "#FFB6C1", "quadrant4Fill": "#FFD700", "quadrant1TextFill": "#000000", "quadrant2TextFill": "#000000", "quadrant3TextFill": "#000000", "quadrant4TextFill": "#000000", "quadrantPointTextFill": "#000000"} }}%%
+quadrantChart
+    title Matriz SWOT Seguranca TechCorp Solutions
+    x-axis Interno --> Externo
+    y-axis Negativo --> Positivo
+    quadrant-1 OPORTUNIDADES
+    quadrant-2 FORCAS
+    quadrant-3 FRAQUEZAS
+    quadrant-4 AMEACAS
+    
+    Infraestrutura LAMP:::strength: [0.15, 0.75]
+    Multiplas Camadas Auth:::strength: [0.20, 0.70]
+    Segregacao Servicos:::strength: [0.25, 0.68]
+    Logging Basico:::strength: [0.18, 0.65]
+    Backup Automatizado:::strength: [0.22, 0.72]
+    Consciencia Vulnerabilidades:::strength: [0.28, 0.63]
+    
+    Frameworks OWASP NIST:::opportunity: [0.70, 0.80]
+    Ferramentas Open Source:::opportunity: [0.75, 0.78]
+    Migracao Cloud:::opportunity: [0.80, 0.75]
+    DevSecOps:::opportunity: [0.72, 0.72]
+    Security Training:::opportunity: [0.77, 0.70]
+    Bug Bounty:::opportunity: [0.68, 0.68]
+    Zero Trust:::opportunity: [0.83, 0.73]
+    Compliance as Code:::opportunity: [0.85, 0.65]
+    
+    Credenciais Hardcoded 9.8:::critical: [0.15, 0.05]
+    Broken Access Control 9.3:::critical: [0.20, 0.08]
+    SQL Injection 9.9:::critical: [0.25, 0.03]
+    XSS 8.2:::high: [0.18, 0.15]
+    Information Disclosure:::high: [0.22, 0.12]
+    Security Misconfiguration:::high: [0.28, 0.18]
+    Ausencia Criptografia:::high: [0.12, 0.10]
+    Gestao Inadequada Secrets:::critical: [0.30, 0.07]
+    Sem Monitoramento:::medium: [0.16, 0.20]
+    Deployment Inseguro:::high: [0.26, 0.13]
+    
+    Ransomware:::threat: [0.70, 0.10]
+    APT:::threat: [0.75, 0.08]
+    Supply Chain Attack:::threat: [0.80, 0.05]
+    Phishing:::threat: [0.72, 0.15]
+    DDoS:::threat: [0.77, 0.18]
+    Insider Threats:::threat: [0.68, 0.12]
+    Zero Day Exploits:::threat: [0.83, 0.07]
+    Multas Regulatorias:::threat: [0.85, 0.20]
+    Roubo IP:::threat: [0.78, 0.13]
+    Ataque Infra:::threat: [0.73, 0.16]
+    
+    classDef strength color: #006400, radius: 8
+    classDef opportunity color: #0066CC, radius: 8
+    classDef critical color: #8B0000, radius: 12, stroke-color: #FF0000, stroke-width: 3px
+    classDef high color: #CC0000, radius: 10
+    classDef medium color: #FF8C00, radius: 8
+    classDef threat color: #8B4513, radius: 10, stroke-color: #000000, stroke-width: 2px
