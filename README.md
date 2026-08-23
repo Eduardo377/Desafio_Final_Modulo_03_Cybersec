@@ -115,7 +115,7 @@ Configurar o pipeline de CI/CD para implementar etapas automáticas de minifica�
 > **Artefatos Multimídia:**
 > * [`[AUDIO BRIEFING]`: `audios/f01_html_leak_briefing.mp3`](./audios/f01_html_leak_briefing.mp3)
 > * [`[POC VIDEO DEMO]`: `videos/poc_f01_source_inspection.mp4`](./videos/poc_f01_source_inspection.mp4)
-> * [`[SLIDE DECK LINK]`: `slides/module_recon_f01.pdf`](slides/module_recon_f01.pdf)
+> * [`[SLIDE DECK LINK]`: `slides/module_recon_f01.pdf`](slides/module_recon_f01.pptx)
 
 ---
 
