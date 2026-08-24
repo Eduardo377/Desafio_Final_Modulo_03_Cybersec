@@ -117,7 +117,7 @@ Configurar o pipeline de CI/CD para implementar etapas automáticas de minifica�
 > * [`[POC VIDEO DEMO]`](./midias/videos/poc_f01_source_inspection.mp4)
 > * [`[SLIDE DECK LINK]`](./docs/slides/module_document_f01.pptx)
 > * [`[PDF DECK LINK]`](./docs/pdf/module_document_f01.pdf)
-> * [`[IMGAGEM DECK LINK]`](./docs/img/Segurança_em_Comentários_de_Código.png)
+> * [`[IMGAGEM DECK LINK]`](./docs/img/module_imagem_f01.png)
 
 ---
 
@@ -170,7 +170,7 @@ Remover qualquer comentário ou referência a arquivos confidenciais do `/robots
 > * [`[POC VIDEO DEMO]`](./midias/videos/poc_f02_robots_recon.mp4)
 > * [`[SLIDE DECK LINK]`](./docs/slides/module_document_f01.pptx)
 > * [`[PDF DECK LINK]`](./docs/pdf/module_document_f02_rebots.pdf)
-> * [`[IMGAGEM DECK LINK]`](./docs/img/Perigos_da_Segurança_por_Obscuridade.png)
+> * [`[IMGAGEM DECK LINK]`](./docs/img/module_imagem_f02_rebots.png)
 
 ---
 
@@ -237,8 +237,10 @@ sudo systemctl restart vsftpd
 
 > **Artefatos Multimídia:**
 > * [`[AUDIO BRIEFING]`](./midias/audios/f03_ftp_anon_briefing.m4a)
-> * `[POC VIDEO DEMO]`: `videos/poc_f03_ftp_exploitation.mp4`
-> * `[SLIDE DECK LINK]`: `slides/module_network_f03.pdf`
+> * [`[POC VIDEO DEMO]`](./midias/videos/poc_f03_ftp_exploitation.mp4)
+> * [`[SLIDE DECK LINK]`](./docs/slides/module_network_f03.pptx)
+> * [`[PDF DECK LINK]`](./docs/pdf/module_network_f03.pdf)
+> * [`[IMAGEM DECK LINK]`](./docs/img/module_network_f03.png)
 
 ---
 
