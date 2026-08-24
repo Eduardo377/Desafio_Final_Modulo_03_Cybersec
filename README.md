@@ -113,9 +113,11 @@ Configurar o pipeline de CI/CD para implementar etapas automáticas de minifica�
 ```
 
 > **Artefatos Multimídia:**
-> * [`[AUDIO BRIEFING]`: `audios/f01_html_leak_briefing.mp3`](./audios/f01_html_leak_briefing.mp3)
-> * [`[POC VIDEO DEMO]`: `videos/poc_f01_source_inspection.mp4`](./videos/poc_f01_source_inspection.mp4)
-> * [`[SLIDE DECK LINK]`: `slides/module_recon_f01.pdf`](slides/module_recon_f01.pptx)
+> * [`[AUDIO BRIEFING]`](./midias/audios/f01_html_leak_briefing.mp3)
+> * [`[POC VIDEO DEMO]`](./midias/videos/poc_f01_source_inspection.mp4)
+> * [`[SLIDE DECK LINK]`](./docs/slides/module_document_f01.pptx)
+> * [`[PDF DECK LINK]`](./docs/pdf/module_document_f01.pdf)
+> * [`[IMGAGEM DECK LINK]`](./docs/img/Segurança_em_Comentários_de_Código.png)
 
 ---
 
@@ -164,9 +166,11 @@ Remover qualquer comentário ou referência a arquivos confidenciais do `/robots
 ```
 
 > **Artefatos Multimídia:**
-> * `[AUDIO BRIEFING]`: `audios/f02_robots_leak_briefing.mp3`
-> * `[POC VIDEO DEMO]`: `videos/poc_f02_robots_recon.mp4`
-> * `[SLIDE DECK LINK]`: `slides/module_recon_f02.pdf`
+> * [`[AUDIO BRIEFING]`](./midias/audios/f02_robots_leak_briefing.m4a)
+> * [`[POC VIDEO DEMO]`](./midias/videos/poc_f02_robots_recon.mp4)
+> * [`[SLIDE DECK LINK]`](./docs/slides/module_document_f01.pptx)
+> * [`[PDF DECK LINK]`](./docs/pdf/module_document_f02_rebots.pdf)
+> * [`[IMGAGEM DECK LINK]`](./docs/img/Perigos_da_Segurança_por_Obscuridade.png)
 
 ---
 
@@ -232,7 +236,7 @@ sudo systemctl restart vsftpd
 ```
 
 > **Artefatos Multimídia:**
-> * `[AUDIO BRIEFING]`: `audios/f03_ftp_anon_briefing.mp3`
+> * [`[AUDIO BRIEFING]`](./midias/audios/f03_ftp_anon_briefing.m4a)
 > * `[POC VIDEO DEMO]`: `videos/poc_f03_ftp_exploitation.mp4`
 > * `[SLIDE DECK LINK]`: `slides/module_network_f03.pdf`
 
@@ -280,7 +284,7 @@ chown root:root /etc/vsftpd/user.conf
 ```
 
 > **Artefatos Multimídia:**
-> * `[AUDIO BRIEFING]`: `audios/f04_user_conf_briefing.mp3`
+> * [`[AUDIO BRIEFING]`](`audios/f04_user_conf_briefing.mp3`)
 > * `[POC VIDEO DEMO]`: `videos/poc_f04_config_leak.mp4`
 > * `[SLIDE DECK LINK]`: `slides/module_network_f04.pdf`
 

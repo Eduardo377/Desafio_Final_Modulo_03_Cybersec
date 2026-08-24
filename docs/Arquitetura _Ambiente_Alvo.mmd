@@ -1,0 +1,89 @@
+flowchart TB
+    subgraph Internet["Internet"]
+        Attacker["Pentester<br/>Kali Linux"]
+    end
+    
+    subgraph Target["Target: 98.95.207.28<br/>TechCorp Solutions"]
+        subgraph OS["Sistema Operacional<br/>Ubuntu 20.04.6 LTS<br/>Kernel 6.8.0-1016-aws"]
+            
+            subgraph WebServices["Servicos Web"]
+                Apache1["Apache 2.4.54<br/>:80"]
+                Apache2["Apache 2.4.65<br/>:8080"]
+                PHP["PHP 7.4.33"]
+            end
+            
+            subgraph DatabaseService["Servico de Banco de Dados"]
+                MySQL[("MySQL 8.0.44<br/>:3306")]
+            end
+            
+            subgraph FileServices["Servicos de Arquivos"]
+                FTP["FTP Anonymous<br/>:21"]
+                SSH["OpenSSH<br/>:2222"]
+            end
+            
+            subgraph WebApp["Aplicacao Web"]
+                HTML["HTML/CSS/JS"]
+                Login["login.php"]
+                Panel["panel.php"]
+                Search["search.php"]
+            end
+            
+            subgraph FileSystem["Sistema de Arquivos"]
+                WWW["/var/www/html/"]
+                Config["/config/"]
+                Backup["/backup/"]
+                Git["/.git/"]
+                Opt["/opt/"]
+            end
+            
+            subgraph SensitiveFiles["Arquivos Sensiveis"]
+                Pass["passwords.txt"]
+                Robot["robots.txt"]
+                Secret["secret.txt"]
+                History[".bash_history"]
+                GitCred[".git-credentials"]
+                BackupScript["backup_script.sh"]
+            end
+        end
+    end
+    
+    Attacker -->|Port Scan<br/>Nikto Scan| Apache1
+    Attacker -->|SQL Injection| Search
+    Attacker -->|XSS Attack| Search
+    Attacker -->|FTP Anonymous| FTP
+    Attacker -->|SSH Bruteforce| SSH
+    
+    Apache1 --> PHP
+    Apache2 --> PHP
+    PHP --> MySQL
+    
+    Apache1 --> WebApp
+    Apache2 --> Panel
+    
+    WebApp --> WWW
+    Login --> MySQL
+    Panel --> MySQL
+    Search --> MySQL
+    
+    FTP --> WWW
+    FTP --> Pass
+    SSH --> OS
+    
+    WWW --> Robot
+    WWW --> Git
+    Config --> SensitiveFiles
+    Backup --> SensitiveFiles
+    Opt --> BackupScript
+    
+    style Attacker fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style Apache1 fill:#fab005,stroke:#f08c00
+    style Apache2 fill:#fab005,stroke:#f08c00
+    style MySQL fill:#339af0,stroke:#1971c2,color:#fff
+    style FTP fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style SSH fill:#51cf66,stroke:#2f9e44
+    style SensitiveFiles fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style Pass fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style Secret fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style History fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style GitCred fill:#ff6b6b,stroke:#c92a2a,color:#fff
+    style BackupScript fill:#ff6b6b,stroke:#c92a2a,color:#fff

@@ -1,5 +1,13 @@
 {
     "removeComments": true,
     "collapseWhitespace": true,
-    "minifyJS": true
+    "minifyJS": true,
+    "minifyCSS": true,
+    "removeOptionalTags": true,
+    "collapseBooleanAttributes": true,
+    "removeRedundantAttributes": true,
+    "removeScriptTypeAttributes": true,
+    "removeStyleLinkTypeAttributes": true,
+    "minifyURLs": true,
+    "decodeEntities": true
 }

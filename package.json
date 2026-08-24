@@ -1,5 +1,24 @@
 {
+  "name": "techcorp-html-sanitizer",
+  "version": "1.0.0",
+  "description": "Pipeline automatizado de DevSecOps para higienização de código e remoção de comentários no DOM (SEC-TC-F01)",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "security-scan": "npm audit"
+  },
+  "keywords": [
+    "cibersegurança",
+    "devsecops",
+    "remediação",
+    "html-minifier"
+  ],
+  "author": "Eduardo G.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
-    "html-minifier": "^4.0.0"
+    "html-minifier-terser": "^7.2.0"
   }
 }
